@@ -35,6 +35,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<ArrayList<Earthquake>> {
 
     @Override
     public ArrayList<Earthquake> loadInBackground() {
+        Log.d("LOADINBACKGROUND", "INITIALIZE");
         URL url = createUrl("https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-01-01&endtime=2020-07-31&limit=100&minmagnitude=1");
 
         String jsonResponse = null;
@@ -43,7 +44,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<ArrayList<Earthquake>> {
         } catch (IOException e) {
             Log.e("MAKEHTTPREQUEST", e.getMessage());
         }
-        Log.d("JSONRESPONSE", jsonResponse.toString());
+
         return extractEarthquakes(jsonResponse);
     }
 
